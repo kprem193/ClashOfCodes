@@ -20,14 +20,12 @@ int getnum(char c)
 }
 int main()
 {
-	//freopen("1.txt","r",stdin);
 	int pid,i,j,n,box;
-	char side;
 	scanf("%d",&pid);
 	
 	//10*10 grid
 	// matrix[i] contains status of upper,lower,left,right side of box i
-	int matrix[100][4]; 
+	int position; 
 	
 	if(pid==-256) // first call
 	{
