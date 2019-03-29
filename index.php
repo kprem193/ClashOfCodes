@@ -24,10 +24,11 @@ if(isset($_POST['code'])){
 	$roll=$_SESSION['roll'];
 	$name=$_SESSION['name'];
 	$fname='codes/'.$userid.'.c';
+	$cname='codes/compiled/a.out';
 	$fp=fopen($fname,'w');
 	file_put_contents($fname,$_POST['code']);
 
-	$output = shell_exec("gcc $fname 2>&1");
+	$output = shell_exec("gcc -o $cname $fname 2>&1");
 	if(!empty($output)){
 		echo '<span class="php-msg"><div class="cr-php"></div>'.$output.'</span>';
 		$_SESSION['error']=1;

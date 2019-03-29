@@ -252,6 +252,6 @@ $_SESSION['pp2']=-1;
 $_SESSION['winner']=$winner;
 echo '<span class="win-disp"><br>player '.$_SESSION['winner'].' Won the Game<a href="trial-exec.php" style="color:rgb(242, 9, 25);"><b> Wanna Play with other</b></span>';
 //for animation
-//redirect_to('end.php');
+redirect_to('end.php');
 }
 ?>
