@@ -5,7 +5,7 @@ session_start();
 require_once('connect_algodb.php');
 require_once('countdown.php');
 require_once('core.php');
-
+$cntnrName="xcute/";
 if(!isset($_SESSION['email'])) redirect_to('games.php');
 
 if(isset($_SESSION['email'])&&isset($_SESSION['error'])){
@@ -65,7 +65,7 @@ if(isset($_SESSION['email'])&&isset($_SESSION['error'])){
 			if($Squiry=mysqli_query($mysqli,$quiry)){
 				$row=mysqli_fetch_assoc($Squiry);
 				$_SESSION['num']=$row['id'];
-				mkdir($_SESSION['num']);
+				mkdir($cntnrName.$_SESSION['num'],0757);
 				//echo $_SESSION['num'];
 				redirect_to('play.php');
 			}

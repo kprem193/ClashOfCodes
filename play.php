@@ -26,17 +26,19 @@ $_SESSION['wpl']=array();                 // contains sequence of moves by playe
 $_SESSION['wbox']=array();                // contains box which was selected
 $_SESSION['wside']=array();               // contains the side selected
 $_SESSION['nbox']=array();                // contains the number of box created in each move
+$cntnrName="xcute/";
 /*data initialization*/
 //user data
 $num=$_SESSION['num'];
+$num=$cntnrName.$num;
 $userid1=$_SESSION['player1'];
 $userid2=$_SESSION['player2'];
 $error_msg="";
 $p1_name=$fplayer1=$_SESSION['fplayer1'];
 $p2_name=$fplayer2=$_SESSION['fplayer2'];
 // code files
-$my_file1="codes/$userid1".".c";
-$my_file2="codes/$userid2".".c";
+$my_file1="codes/$userid1".".cpp";
+$my_file2="codes/$userid2".".cpp";
 $moniter_file="codes/moniters".".cpp";
 //actual files
 $moniter="$num/moniter.cpp";
@@ -48,21 +50,21 @@ $moniter_input="$num/moniter_input.txt";
 make_file('',$input1);
 make_file('',$input2);
 make_file('',$moniter_input);
-$file_contents = file_get_contents($my_file1);
-make_file($file_contents ,$p1_code);
-$file_contents = file_get_contents($my_file2);
-make_file($file_contents ,$p2_code);
-$file_contents = file_get_contents($moniter_file);
-make_file($file_contents ,$moniter);
+// $file_contents = file_get_contents($my_file1);
+// make_file($file_contents ,$p1_code);
+// $file_contents = file_get_contents($my_file2);
+// make_file($file_contents ,$p2_code);
+// $file_contents = file_get_contents($moniter_file);
+// make_file($file_contents ,$moniter);
 
 $p1m=0;
 $move=0;
 //input -256 to  moniter
 //save output to input1
 file_put_contents($moniter_input,"-256");
-$error=shell_exec("g++ -o om $moniter   2>&1");
+$error=shell_exec("g++ -o $num/om $moniter   2>&1");
 	if(empty($error)){
-		$output=shell_exec("./om < $moniter_input");
+		$output=shell_exec("$num./om < $moniter_input");
 		file_put_contents($input1,$output);
 
 

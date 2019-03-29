@@ -23,12 +23,12 @@ if(isset($_POST['code'])){
 	$userid=$_SESSION['email'];
 	$roll=$_SESSION['roll'];
 	$name=$_SESSION['name'];
-	$fname='codes/'.$userid.'.c';
+	$fname='codes/'.$userid.'.cpp';
 	$cname='codes/compiled/a.out';
 	$fp=fopen($fname,'w');
 	file_put_contents($fname,$_POST['code']);
 
-	$output = shell_exec("gcc -o $cname $fname 2>&1");
+	$output = shell_exec("g++ -o $cname $fname 2>&1");
 	if(!empty($output)){
 		echo '<span class="php-msg"><div class="cr-php"></div>'.$output.'</span>';
 		$_SESSION['error']=1;
