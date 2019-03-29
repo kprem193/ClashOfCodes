@@ -3,7 +3,7 @@
 <SCRIPT LANGUAGE="JavaScript">
 
 //change event date event here.
-var eventdate = new Date("November 16, 2016 23:59:59");
+var eventdate = new Date("April 07, 2019 10:00:00");
 
 function toSt(n) {
  s=""

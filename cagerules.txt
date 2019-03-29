@@ -1,6 +1,6 @@
 ﻿Clash of codes
 
-game : CAGE
+Game : CAGE
 
 game rules:
 1.In this event we will be playing Islon on 5x5 board.
