@@ -3,10 +3,7 @@
 using namespace std;
 void give_initial_input()
 {
-	for(int i=0;i<100;i++){
-	cout<<"0 0 0 0";
-	if(i!=99)
-	cout<<"\n";}
+	printf("12\n0")
 }
 
 int main()
@@ -53,7 +50,7 @@ int main()
 
 	if(p2bid>p2money)
 	{
-		printf("-2");
+		printf("-2");   //p2 made wrong move
 		return 0;
 	}
 
@@ -83,6 +80,7 @@ int main()
 			return 0;
 		}
 	}
+
 	else
 	{
 		move=0;
@@ -106,7 +104,7 @@ int main()
 		return 0;
 	}
 
-	if(p2money<=1)
+	else if(p2money<=1)
 	{
 		move=p2money-p1money;
 		position+=move;
@@ -116,6 +114,19 @@ int main()
 		printf("-6"); //Player 1 has 0 rupee left
 	}
 
-	
-
+	else
+	{
+		printf("%d\n",position);
+		printf("%d\n",t+1);
+		for(i=0;i<t+1;i++)
+		{
+			printf("%d ",mat[0][i]);
+		}
+		printf("\n");
+		for(i=0;i<t+1;i++)
+		{
+			printf("%d ",mat[2][i]);
+		}
+	}
+return 0;
 }
