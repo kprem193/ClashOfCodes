@@ -41,9 +41,9 @@ $my_file1="codes/$userid1".".cpp";
 $my_file2="codes/$userid2".".cpp";
 $moniter_file="codes/moniters".".cpp";
 //actual files
-$moniter="$num/moniter.cpp";
-$p1_code="$num/p1.cpp";
-$p2_code="$num/p2.cpp";
+$moniter="codes/moniters.cpp";
+$p1_code=$my_file1;
+$p2_code=$my_file2;
 $input1="$num/input1.txt";
 $input2="$num/input2.txt";
 $moniter_input="$num/moniter_input.txt";
@@ -64,17 +64,17 @@ $move=0;
 file_put_contents($moniter_input,"-256");
 $error=shell_exec("g++ -o $num/om $moniter   2>&1");
 	if(empty($error)){
-		$output=shell_exec("$num./om < $moniter_input");
+		$output=shell_exec("./$num/om < $moniter_input");
 		file_put_contents($input1,$output);
 
 
 		$p1_e=0;$p2_e=0;
 
-		$error1=shell_exec("g++ -o op1 $p1_code   2>&1");
+        $error1=shell_exec("g++ -o $num/op1 $p1_code   2>&1");
 		if(!empty($error1)){
 			$p1_e=1;
 		}
-		$error2=shell_exec("g++ -o op2 $p2_code   2>&1");
+		$error2=shell_exec("g++ -o $num/op2 $p2_code   2>&1");
 		if(!empty($error2)){
 			$p2_e=1;
 		}
@@ -106,7 +106,7 @@ $error=shell_exec("g++ -o $num/om $moniter   2>&1");
 			while(true){
 			    if($turn=='1')
                 {
-                    $output1=shell_exec("./op1 < $input1");
+                    $output1=shell_exec("./$num/op1 < $input1");
                     if(!empty($output1)){
                         sscanf($output1, "%d %c",$x,$y);
                         echo '<hr><span class="print">'.$p1_name.' played at('.$x.','.$y.')</span>';
@@ -120,7 +120,7 @@ $error=shell_exec("g++ -o $num/om $moniter   2>&1");
                         file_put_contents($moniter_input,'1 '.$output1.' '.$file_contents);
 			            //echo file_get_contents($moniter_input);
 			
-                        $outputm=shell_exec("./om < $moniter_input");
+                        $outputm=shell_exec("./$num/om < $moniter_input");
                         if(!empty($outputm)){
 
                             sscanf($outputm,"%d",$type);
@@ -169,7 +169,7 @@ $error=shell_exec("g++ -o $num/om $moniter   2>&1");
                  }
                  else
                  {
-                    $output2=shell_exec("./op2 < $input2");
+                    $output2=shell_exec("./$num/op2 < $input2");
                     if(!empty($output2)){
                         sscanf($output2, "%d %c",$x,$y);
                         echo '<hr><span class="print">'.$fplayer2.' played at('.$x.','.$y.')</span>';
@@ -182,7 +182,7 @@ $error=shell_exec("g++ -o $num/om $moniter   2>&1");
                         $file_contents = file_get_contents($input2);
                         file_put_contents($moniter_input,'2 '.$output2.' '.$file_contents);
 
-                        $outputm=shell_exec("./om < $moniter_input");
+                        $outputm=shell_exec("./$num/om < $moniter_input");
                         if(!empty($outputm)){
 
                             sscanf($outputm,"%d",$type);
@@ -246,9 +246,14 @@ $error=shell_exec("g++ -o $num/om $moniter   2>&1");
 		$error_msg="$error Internal error in moniter";
 
 	}
-	echo $error_msg.' '.$winner;
-$_SESSION['i']=-1;
-$_SESSION['max']=$move-1;
+    echo $error_msg.' '.$winner;
+$animFile = "anim.txt";
+$lines = file($animFile); //file in to an array
+$_SESSION['i']=0;
+$_SESSION['max']=count($lines);
+$_SESSION['p1Mon']=100;
+$_SESSION['bpos']=5;
+$_SESSION['p2Mon']=100;
 $_SESSION['pp1']=-1;
 $_SESSION['pp2']=-1;
 $_SESSION['winner']=$winner;

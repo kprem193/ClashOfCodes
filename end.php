@@ -2,6 +2,7 @@
 <head>
 	
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/bidding-style.css" />
 	<style>
 	body{
 	margin:0;
@@ -19,17 +20,153 @@
 				padding:2%;
 			}
 	</style>
+	<script>
+		function clearDraw() {
+			let drawCntnr=document.getElementById("draw-cntnr");
+			console.log(drawCntnr);
+			drawCntnr.remove();
+		}
+		
+	</script>
 </head>
 <body>
 <?php
-/* just for animation purpose*/
+			/* just for animation purpose*/
 
-session_start();
-require_once('connect_algodb.php');
-//require_once('countdown.php');
-require_once('core.php');
+			session_start();
+			require_once('connect_algodb.php');
+			//require_once('countdown.php');
+			require_once('core.php');
+			$rid=$_SESSION['i']++;
+			if($_SESSION['i']>$_SESSION['max']){
+				$rid=$_SESSION['max']-1;
+			}
+			$animFile = "anim.txt";
+			$lines = file($animFile);//file in to an array
+			$splitLine=explode(' ', $lines[$rid]);
+			$nsteps=11;
+			$p1Mon=$_SESSION['p1Mon'];
+			$p2Mon=$_SESSION['p2Mon'];
+			$p1Bid=(int)($splitLine[0]);
+			$p2Bid=(int)($splitLine[1]);
+			$bMove=(int)($splitLine[2]);
+			$bpos=$_SESSION['bpos'];
+			if($_SESSION['i']>$_SESSION['max']){
+				$p1Bid=0;
+				$p2Bid=0;
+				$bMove=0;
+			}
+			echo $bpos.'<br>'.$_SESSION['i'];
+		?>
 
-$_SESSION['i']++;
+<!--  Bidding Game Animation Start -->
+
+<div  class="cntnr">
+
+		<?php
+		// $bpos=($_SESSION['i'])%$nsteps;
+		// while($temp<3) {
+			echo '
+			<div id="draw-cntnr" class="anim-cntnr">
+			<span class="p-label">P1</span>
+			<span class="p-mon p1-mon">'.($p1Mon-$p1Bid).'</span>
+			<span class="p-bid p1-bid">'.$p1Bid.'</span>
+			';
+
+			for ($i=0;$i<$nsteps;$i++) {
+			if($i==$bpos){
+				echo '
+				<div class="bottle"> 
+				<img src="img/bottle.png" alt="bottle">
+				</div>
+				';
+			}
+			?>
+			<span class="step 
+			<?php
+			if($i==(int)($nsteps/2)){
+				echo 'center-step ';
+			}
+			if($i==$bpos){
+				echo 'active-step ';
+			}
+			?>
+			"></span>
+	<?php
+	}
+echo '
+<span class="p-label">P2</span>
+<span class="p-mon p2-mon">'.($p2Mon-$p2Bid).'</span>
+<span class="p-bid p2-bid">'.$p2Bid.'</span>
+</div>
+';
+echo '
+	<script>
+		//setTimeout(() =>{ 
+			// clearDraw();
+		// }, 2000);
+		var timeout=setTimeout("location.reload(true);",3000);
+	</script>
+';
+// }
+
+if($_SESSION['i']>$_SESSION['max']) {
+	echo '
+	<script>
+	
+	clearTimeout(timeout);
+	
+	</script>
+	';
+}
+
+$_SESSION['p1Mon']=$p1Mon-$p1Bid;
+$_SESSION['p2Mon']=$p2Mon-$p2Bid;
+$_SESSION['bpos']=$bpos+$bMove;
+?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Bidding Game Animation End -->
+
+
+
+<?php
+exit(0);
+
 
 $_SESSION['end']=0;
 if($_SESSION['i']>$_SESSION['max']){
@@ -233,6 +370,7 @@ array(0,0,2,0,0)
 		<script type="text/javascript">
 			
 			clearTimeout(timeout);
+			
 	</script>
 	<?php
 }

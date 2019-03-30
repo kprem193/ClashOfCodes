@@ -1,0 +1,74 @@
+.cntnr {
+  margin: 200px 0;
+}
+.anim-cntnr {
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+}
+.step {
+  width: 46px;
+  height: 10px;
+  background: grey;
+  display: inline-block;
+}
+.center-step {
+  background: royalblue;
+}
+.active-step {
+  height: 5px;
+}
+.bottle {
+  /* background: pink; */
+  width: fit-content;
+  display: inline-block;
+  position: absolute;
+  bottom: 20px;
+  margin-left: -28px;
+}
+.p-label {
+  font-size: 50px;
+  /* background: red; */
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 0 20px;
+  position: relative;
+  /* top: 14px; */
+}
+.p-mon {
+  font-size: 30px;
+  margin: 0 23px;
+  text-align: center;
+  display: inline-block;
+  width: 50px;
+  /* background: pink; */
+  position: absolute;
+  /* left: 0; */
+  top: -30px;
+}
+.p1-mon {
+  left: 0;
+}
+.p2-mon {
+  right: 0;
+  margin-right: 27px;
+}
+
+.p-bid {
+  font-size: 20px;
+  margin: 0 23px;
+  text-align: center;
+  display: inline-block;
+  width: 50px;
+  /* background: pink; */
+  position: absolute;
+  /* left: 0; */
+  bottom: -20px;
+}
+
+.p1-bid {
+  left: 0;
+}
+.p2-bid {
+  right: 0;
+  margin-right: 27px;
+}
