@@ -8,7 +8,7 @@ void give_initial_input()
 
 int main()
 {
-	int pid,i=0,j=0,n,mat[50][3],p1money=100,p2money=100,t,position,p1bid,p2bid,move;
+	int pid,i=0,j=0,n,mat[50][3],p1money=100,p2money=100,t,position,p1bid,p2bid,move,player;
 	scanf("%d",&pid);
 	
 	FILE *fp;
@@ -33,11 +33,11 @@ int main()
 	fclose(fp);
 
 	t=i;		// number of steps
-	for(i=0;i<50;i++)
+	for(i=0;i<t;i++)
 	{
-		p1money-=mat[0][i];
-		p2money-=mat[1][i];
-		position+=mat[2][i];
+		p1money-=mat[i][0];
+		p2money-=mat[i][1];
+		position+=mat[i][2];
 	}
 
 	scanf("%d %d",&p1bid,&p2bid)
@@ -61,7 +61,7 @@ int main()
 		fp=fopen("temp.txt","a");
 		fprintf(fp,"%d %d %d\n",p1bid,p2bid,move)
 		fclose(fp);
-		if(position-move<=0)
+		if(position+move<=0)
 		{
 			printf("-3");   // Player 1 won
 			return 0;
@@ -114,19 +114,19 @@ int main()
 		printf("-6"); //Player 1 has 0 rupee left
 	}
 
-	else
-	{
-		printf("%d\n",position);
-		printf("%d\n",t+1);
-		for(i=0;i<t+1;i++)
-		{
-			printf("%d ",mat[0][i]);
-		}
-		printf("\n");
-		for(i=0;i<t+1;i++)
-		{
-			printf("%d ",mat[2][i]);
-		}
-	}
+	// else
+	// {
+	// 	printf("%d\n",position);
+	// 	printf("%d\n",t+1);
+	// 	for(i=0;i<t+1;i++)
+	// 	{
+	// 		printf("%d ",mat[0][i]);
+	// 	}
+	// 	printf("\n");
+	// 	for(i=0;i<t+1;i++)
+	// 	{
+	// 		printf("%d ",mat[2][i]);
+	// 	}
+	// }
 return 0;
 }
